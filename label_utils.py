@@ -23,10 +23,7 @@ from random import randint
 import requests
 import tarfile
 
-url = "https://drive.google.com/file/d/1AdMbVK110IKLG7wJKhga2N2fitV1bVPA/view"
-response = requests.get(url, stream=True)
-file = tarfile.open(fileobj=response.raw, mode="r|gz")
-file.extractall(path=".")
+
 
 def get_box_color(index=None):
     """Retrieve plt-compatible color string based on object index"""
@@ -58,6 +55,10 @@ def class2index(class_="background"):
 
 def load_csv(path):
     """Load a csv file into an np array"""
+    url = "https://drive.google.com/file/d/1AdMbVK110IKLG7wJKhga2N2fitV1bVPA/view"
+    response = requests.get(url, stream=True)
+    file = tarfile.open(fileobj=response.raw, mode="r|gz")
+    file.extractall(path=".")
     data = []
     with open(path) as csv_file:
         rows = csv.reader(csv_file, delimiter=',')
