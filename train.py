@@ -23,7 +23,7 @@ if __name__ == '__main__':
     data_loader = torch.utils.data.DataLoader(dataset, 
                                               batch_size=2, 
                                               shuffle=True, 
-                                              num_workers=4,
+                                              num_workers=2,
                                               collate_fn=utils.collate_fn)
 
     # get the model
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=3, gamma=0.1)
 
     # modify for the number of epochs
-    num_epochs = 1
+    num_epochs = 4
 
     for epoch in range(num_epochs):
       # train for one epoch, printing every 10 iterations
