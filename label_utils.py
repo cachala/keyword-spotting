@@ -58,7 +58,7 @@ def load_csv(path):
     url = "https://drive.google.com/file/d/1AdMbVK110IKLG7wJKhga2N2fitV1bVPA/view"
     response = requests.get(url, stream=True)
     file = tarfile.open(fileobj=response.raw, mode="r|gz")
-    file.extractall(path=".")
+    file.extractall(path="./Object-Detection")
     data = []
     with open(path) as csv_file:
         rows = csv.reader(csv_file, delimiter=',')
