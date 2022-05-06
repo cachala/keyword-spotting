@@ -20,6 +20,13 @@ import json
 
 from matplotlib.patches import Rectangle
 from random import randint
+import requests
+import tarfile
+
+url = "https://drive.google.com/file/d/1AdMbVK110IKLG7wJKhga2N2fitV1bVPA/view"
+response = requests.get(url, stream=True)
+file = tarfile.open(fileobj=response.raw, mode="r|gz")
+file.extractall(path=".")
 
 def get_box_color(index=None):
     """Retrieve plt-compatible color string based on object index"""
