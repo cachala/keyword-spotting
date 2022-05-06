@@ -54,11 +54,6 @@ def class2index(class_="background"):
 
 
 def load_csv(path):
-    """Load a csv file into an np array"""
-    url = "https://drive.google.com/file/d/1AdMbVK110IKLG7wJKhga2N2fitV1bVPA/view"
-    response = requests.get(url, stream=True)
-    file = tarfile.open(fileobj=response.raw, mode="r|gz")
-    file.extractall(path="./Object-Detection")
     data = []
     with open(path) as csv_file:
         rows = csv.reader(csv_file, delimiter=',')
@@ -116,10 +111,6 @@ def get_label_dictionary(labels, keys):
         image_id += 1
     return dictionary
 
-def load_json(path):
-    with open(path) as file:
-        data = json.load(file)
-    return data
 
 def build_label_dictionary(path):
     """Build a dict with key=filename, value=[box coords, class]"""
