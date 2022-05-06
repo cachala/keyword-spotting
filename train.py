@@ -14,6 +14,13 @@ import model
 import label_utils
 from torchvision import transforms
 from engine import train_one_epoch
+import requests
+import tarfile
+
+url = "https://drive.google.com/file/d/1AdMbVK110IKLG7wJKhga2N2fitV1bVPA/view"
+response = requests.get(url, stream=True)
+file = tarfile.open(fileobj=response.raw, mode="r|gz")
+file.extractall(path=".")
 
 # train on the GPU or on the CPU, if a GPU is not available
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
