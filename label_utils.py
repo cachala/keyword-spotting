@@ -124,7 +124,7 @@ def build_label_dictionary(path):
     dictionary = get_label_dictionary(labels, keys)
     dict = {}
     for key in dictionary.keys():
-        dict[os.path.join(dir_path, key)] = np.array(dictionary[key])
+        dict[os.path.join(dir_path, key)] = np.array(dictionary[key], dtype=object)
     return dict
 
 
