@@ -16,12 +16,11 @@ import csv
 import config
 import os
 import matplotlib.pyplot as plt
-import json
 
 from matplotlib.patches import Rectangle
 from random import randint
 import requests
-import tarfile
+import zipfile
 
 
 
@@ -54,6 +53,11 @@ def class2index(class_="background"):
 
 
 def load_csv(path):
+    url = 'https://github.com/ricae/Object-Detection/releases/download/v1.1/drinks.zip'
+    response = requests.get(url)
+    open('drinks.zip', 'wb').write(response.content)
+    with zipfile.ZipFile('drinks.zip', 'r') as response:
+        response.extractall('./drinks')
     data = []
     with open(path) as csv_file:
         rows = csv.reader(csv_file, delimiter=',')
