@@ -8,9 +8,9 @@ Original file is located at
 """
 
 # Commented out IPython magic to ensure Python compatibility.
-pip install pytorch-lightning --upgrade
-pip install torchmetrics --upgrade
-pip install einops
+# %pip install pytorch-lightning --upgrade
+# %pip install torchmetrics --upgrade
+# %pip install einops
 
 import torch
 import torchaudio, torchvision
