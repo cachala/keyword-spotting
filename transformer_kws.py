@@ -316,7 +316,7 @@ def get_args():
     # model training hyperparameters
     parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                         help='input batch size for training (default: )')
-    parser.add_argument('--max-epochs', type=int, default=1, metavar='N',
+    parser.add_argument('--max-epochs', type=int, default=50, metavar='N',
                         help='number of epochs to train (default: 0)')
     parser.add_argument('--lr', type=float, default=0.001, metavar='LR',
                         help='learning rate (default: 0.0)')
