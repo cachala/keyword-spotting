@@ -306,7 +306,7 @@ class LitTransformer(LightningModule):
 def get_args():
     parser = ArgumentParser(description='PyTorch Transformer')
     parser.add_argument('--depth', type=int, default=12, help='depth')
-    parser.add_argument('--embed_dim', type=int, default=64, help='embedding dimension')
+    parser.add_argument('--embed_dim', type=int, default=128, help='embedding dimension')
     parser.add_argument('--num_heads', type=int, default=4, help='num_heads')
 
     parser.add_argument('--patch_num', type=int, default=8, help='patch_num')
