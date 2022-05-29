@@ -27,7 +27,7 @@ def get_args():
     parser.add_argument("--win-length", type=int, default=None)
     parser.add_argument("--hop-length", type=int, default=512)
     parser.add_argument("--wav-file", type=str, default=None)
-    parser.add_argument("--checkpoint", type=str, default=os.path.join(args.path, "checkpoints", "transformer-kws-best-acc.pt"))
+    parser.add_argument("--checkpoint", type=str, default="data/speech_commands/checkpoints/transformer-kws-best-acc-v1.pt")
     parser.add_argument("--gui", default=False, action="store_true")
     parser.add_argument("--rpi", default=False, action="store_true")
     parser.add_argument("--threshold", type=float, default=0.6)
