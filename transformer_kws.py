@@ -389,3 +389,12 @@ if __name__ == "__main__":
                       max_epochs=args.max_epochs, precision=16 if args.accelerator == 'gpu' else 32,
                       callbacks=model_checkpoint)
     trainer.fit(model, datamodule=datamodule)
+    
+    model = model.load_from_checkpoint(os.path.join(args.path, "checkpoints", "transformer-kws-best-acc.ckpt"))
+    model.eval()
+    script = model.to_torchscript()
+
+    # save for use in production environment
+    model_path = os.path.join(args.path, "checkpoints",
+                            "transformer-kws-best-acc.pt")
+    torch.jit.save(script, model_path)
