@@ -1,8 +1,6 @@
 # CoE 197 HW 3: Transformer-based KWS
 by Rica A. Echala
 
-using FastRCNNPredictor
-https://arxiv.org/abs/1506.01497
 
 ### Install requirements
 
