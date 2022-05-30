@@ -231,13 +231,16 @@ class KWSDataModule(LightningDataModule):
             labels.append(torch.tensor(self.class_dict[label]))
             wavs.append(waveform)
 
-        mels = torch.stack(mels)
-        labels = torch.stack(labels)
+        #mels = torch.stack(mels)
+        #labels = torch.stack(labels)
         wavs = torch.stack(wavs)
 
         # Convert image into patches
+        mels = torch.stack(mels, dim=0)
+        labels = torch.LongTensor(labels)
         mels = rearrange(mels, 'b c (p1 h) (p2 w) -> b (p1 p2) (c h w)', p1=self.patch_num, p2=self.patch_num)
-        
+      
+       
         return mels, labels
 
 class LitTransformer(LightningModule):
