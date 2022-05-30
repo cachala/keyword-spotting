@@ -340,7 +340,7 @@ def get_args():
     parser.add_argument("--precision", default=16)
     parser.add_argument('--accelerator', default='gpu', type=str, metavar='N')
     parser.add_argument("--devices", default=1)
-    parser.add_argument("--num-workers", type=int, default=48)
+    parser.add_argument("--num-workers", type=int, default=2)
  
     parser.add_argument("--no-wandb", default=False, action='store_true')
 
