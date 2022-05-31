@@ -10,5 +10,10 @@ pip install -r reqs.txt
 ### Train
 
 ```
-python transformer_kws.py
+python train.py
+```
+### Inference
+
+```
+python kws-infer.py
 ```
