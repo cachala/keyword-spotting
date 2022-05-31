@@ -1,3 +1,6 @@
 pytorch-lightning
 torchmetrics
 einops
+sounddevice
+pysimplegui
+validators
