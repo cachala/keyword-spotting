@@ -27,7 +27,7 @@ def get_args():
     parser.add_argument("--win-length", type=int, default=None)
     parser.add_argument("--hop-length", type=int, default=512)
     parser.add_argument("--wav-file", type=str, default=None)
-    parser.add_argument("--checkpoint", type=str, default="data/speech_commands/checkpoints/transformer-kws-best-acc.pt")
+    parser.add_argument("--checkpoint", type=str, default="transformer-kws-best-acc.pt")
     parser.add_argument("--gui", default=False, action="store_true")
     parser.add_argument("--rpi", default=False, action="store_true")
     parser.add_argument("--threshold", type=float, default=0.6)
@@ -46,13 +46,8 @@ if __name__ == "__main__":
 
     args = get_args()
 
-    if validators.url(args.checkpoint):
-        checkpoint = args.checkpoint.rsplit('/', 1)[-1]
-        # check if checkpoint file exists
-        if not os.path.isfile(checkpoint):
-            torch.hub.download_url_to_file(args.checkpoint, checkpoint)
-    else:
-        checkpoint = args.checkpoint
+
+    checkpoint = args.checkpoint
 
     print("Loading model checkpoint: ", checkpoint)
     scripted_module = torch.jit.load(checkpoint)
@@ -91,7 +86,7 @@ if __name__ == "__main__":
     if not args.gui:
         mel = ToTensor()(librosa.power_to_db(transform(waveform).squeeze().numpy(), ref=np.max))
         mel = mel.unsqueeze(0)
-
+        mel = rearrange(mel, 'b c (p1 h) (p2 w) -> b (p1 p2) (c h w)', p1=8, p2=8)
         pred = torch.argmax(scripted_module(mel), dim=1)
         print(f"Ground Truth: {label}, Prediction: {idx_to_class[pred.item()]}")
         exit(0)
@@ -133,6 +128,9 @@ if __name__ == "__main__":
             waveform = torch.from_numpy(waveform).unsqueeze(0)
             mel = ToTensor()(librosa.power_to_db(transform(waveform).squeeze().numpy(), ref=np.max))
         mel = mel.unsqueeze(0)
+        
+        mel = rearrange(mel, 'b c (p1 h) (p2 w) -> b (p1 p2) (c h w)', p1=8, p2=8)
+        
         pred = scripted_module(mel)
         pred = torch.functional.F.softmax(pred, dim=1)
         max_prob =  pred.max()
