@@ -17,7 +17,7 @@ import sounddevice as sd
 import time
 import validators
 from torchvision.transforms import ToTensor
-
+from einops import rearrange
 
 def get_args():
     parser = argparse.ArgumentParser()
