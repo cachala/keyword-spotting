@@ -30,7 +30,7 @@ def get_args():
     parser.add_argument("--checkpoint", type=str, default="transformer-kws-best-acc.pt")
     parser.add_argument("--gui", default=False, action="store_true")
     parser.add_argument("--rpi", default=False, action="store_true")
-    parser.add_argument("--threshold", type=float, default=0.7)
+    parser.add_argument("--threshold", type=float, default=0.6)
     args = parser.parse_args()
     return args
 
