@@ -86,7 +86,7 @@ if __name__ == "__main__":
     if not args.gui:
         mel = ToTensor()(librosa.power_to_db(transform(waveform).squeeze().numpy(), ref=np.max))
         mel = mel.unsqueeze(0)
-        mel = rearrange(mel, 'b c (p1 h) (p2 w) -> b (p1 p2) (c h w)', p1=8, p2=8)
+        mel = rearrange(mel, 'b c (p1 h) (p2 w) -> b (p1 p2) (c h w)', p1=4, p2=4)
         pred = torch.argmax(scripted_module(mel), dim=1)
         print(f"Ground Truth: {label}, Prediction: {idx_to_class[pred.item()]}")
         exit(0)
@@ -129,7 +129,7 @@ if __name__ == "__main__":
             mel = ToTensor()(librosa.power_to_db(transform(waveform).squeeze().numpy(), ref=np.max))
         mel = mel.unsqueeze(0)
         
-        mel = rearrange(mel, 'b c (p1 h) (p2 w) -> b (p1 p2) (c h w)', p1=8, p2=8)
+        mel = rearrange(mel, 'b c (p1 h) (p2 w) -> b (p1 p2) (c h w)', p1=4, p2=4)
         
         pred = scripted_module(mel)
         pred = torch.functional.F.softmax(pred, dim=1)
